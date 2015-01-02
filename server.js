@@ -21,7 +21,7 @@ app.use(bodyParser.json()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // routes ======================================================================
-require('./app/routes.js'); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
 //socket TODO connection to raspy
 io.on('connection', function (socket) {
