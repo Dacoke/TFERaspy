@@ -18,6 +18,13 @@ app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // get information from html forms
 
+app.use(function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	return next();
+});
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // routes ======================================================================
