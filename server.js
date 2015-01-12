@@ -31,12 +31,13 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
 //socket 
+var message='';
 io.on('connection', function (socket) {
 	socket.on('connection established', function (data) {
 	  console.log(data);
 	});
 	socket.on('message', function (data) {
-		console.log(data);
+		message = data;
 	});
 });
 
