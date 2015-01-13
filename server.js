@@ -31,13 +31,15 @@ app.set('message', '');
 // routes ======================================================================
 require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
-//socket 
+//socket openshift
 io.on('connection', function (socket) {
 	socket.on('connection established', function (data) {
 	  console.log(data);
 	});
+	//send message to localhost when received from openshift
 	socket.on('message', function (message) {
-		app.set('message', message);
+		socket.emit('print', message);
+		//app.set('message', message);
 	});
 });
 

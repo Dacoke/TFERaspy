@@ -12,15 +12,30 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
-            <h1><%= message %></h1>
+            <section id="print">
+						
+			</section>
         </div>
     </div>
  
-    <div class="container">
-        <div class="row">
-			<div class="col-md-12">
-			</div>
-		</div>
-    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io();
+		
+		(function($) {
+	          $(function() {
+		            socket.on('print', function(message) {
+		            	insereMessage(message); 
+		            }); 
+		            
+		     	// Ajoute un message dans la page
+		        function insereMessage(message) {
+		            $('#print').prepend('<p><strong>' + message + '</strong></p>');
+		        }
+	          });
+         })(jQuery);
+        
+	</script>
 </body>
 </html>
