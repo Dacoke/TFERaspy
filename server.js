@@ -32,17 +32,35 @@ app.set('message', '');
 require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
 //socket openshift
-io.on('connection', function (socket) {
+var mirror = io.of('/mirror');
+mirror.on('connection', function (socket) {
 	socket.on('connection established', function (data) {
 	  console.log(data);
 	});
-	//send message to localhost when received from openshift
-	socket.on('message', function (message) {
-		console.log('message received : ' + message);
-		socket.broadcast.emit('print', message);
-		//app.set('message', message);
-	});
 });
+mirror.on('message', function (message) {
+	console.log('message received : ' + message);
+	app.set('message', message);
+});	
+
+var raspy = io.of('/raspy');
+raspy.on('connection', function (socket) {
+	console.log('raspy connected');
+	var message = app.get('message');
+	socket.emit('print', message);
+});
+
+//io.on('connection', function (socket) {
+//	socket.on('connection established', function (data) {
+//	  console.log(data);
+//	});
+//	//send message to index when received from mirror
+//	socket.on('message', function (message) {
+//		console.log('message received : ' + message);
+//		socket.broadcast.emit('print', message);
+//		//app.set('message', message);
+//	});
+//});
 
 // launch ======================================================================
 server.listen(port, function(){
