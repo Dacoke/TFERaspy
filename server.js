@@ -37,14 +37,14 @@ io.on('connection', function (socket) {
 	  console.log(data);
 	});
 	//send message to localhost when received from openshift
-	socket.on('message', function (message) {
-		console.log('message received : ' + message);
-		socket.emit('print', function(message){
-			console.log('message sent to localhost' + message);
+	socket.emit('print', function(message){
+		console.log('message sent to localhost' + message);
+		socket.on('message', function (message) {
+			console.log('message received : ' + message);
+			//app.set('message', message);
 		});
-			
-		//app.set('message', message);
 	});
+	
 });
 
 // launch ======================================================================
