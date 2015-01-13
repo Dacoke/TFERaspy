@@ -21,9 +21,9 @@
     <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 	<script>
-		var raspy = io.connect('http://tfe.ngrok.com/raspy:80');
+		var socket = io.connect('http://tfe.ngrok.com:80');
 		
-        raspy.on('print', function(message) {
+        socket.on('print', function(message) {
         	console.log('yessss: ' + message);
          	insereMessage(message); 
         }); 
