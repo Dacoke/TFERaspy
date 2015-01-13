@@ -39,7 +39,7 @@ io.on('connection', function (socket) {
 	//send message to localhost when received from openshift
 	socket.on('message', function (message) {
 		console.log('message received : ' + message);
-		socket.emit('print', message);
+		socket.broadcast.emit('print', message);
 		//app.set('message', message);
 	});
 });
