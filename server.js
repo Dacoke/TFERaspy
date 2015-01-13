@@ -13,7 +13,6 @@ var bodyParser   = require('body-parser');
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
 
-var text = '';
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,8 +27,9 @@ app.use(function(req, res, next) {
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
+app.set('message', '');
 // routes ======================================================================
-require('./app/routes.js')(app, text); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
 //socket 
 io.on('connection', function (socket) {
@@ -37,7 +37,7 @@ io.on('connection', function (socket) {
 	  console.log(data);
 	});
 	socket.on('message', function (message) {
-		text = message;
+		app.set('message', message);
 	});
 });
 
