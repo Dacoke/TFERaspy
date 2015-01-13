@@ -23,12 +23,12 @@
 	<script>
 		var socket = io();
 		
-		(function($) {
-	          $(function() {
-		            socket.on('print', function(message) {
-		            	insereMessage(message); 
-		            }); 
-		            
+        socket.on('print', function(message) {
+        	console.log('yessss: ' + message);
+         	insereMessage(message); 
+        }); 
+        (function($) {
+        	$(function() {            
 		     	// Ajoute un message dans la page
 		        function insereMessage(message) {
 		            $('#print').prepend('<p><strong>' + message + '</strong></p>');
