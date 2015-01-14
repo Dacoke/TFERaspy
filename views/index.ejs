@@ -22,19 +22,19 @@
     <script src="/socket.io/socket.io.js"></script>
 	<script>
 		var socket = io.connect('http://tfe.ngrok.com:80');
-		
-        socket.on('print', function(message) {
-        	console.log('yessss: ' + message);
-         	insereMessage(message); 
-        }); 
-        (function($) {
-        	$(function() {            
+		(function($) {
+        	$(function() { 
+		        socket.on('print', function(message) {
+		        	console.log('yessss: ' + message);
+		         	insereMessage(message); 
+		        }); 
+		                   
 		     	// Ajoute un message dans la page
 		        function insereMessage(message) {
 		            $('#print').prepend('<p><strong>' + message + '</strong></p>');
 		        }
-	          });
-         })(jQuery);
+          });
+       	})(jQuery);
         
 	</script>
 </body>
