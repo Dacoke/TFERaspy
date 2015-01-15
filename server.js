@@ -25,9 +25,10 @@ app.use(function(req, res, next) {
 	return next();
 });
 
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs'); // set up ejs for templating
 
-app.set('message', '');
+//app.set('message', '');
 // routes ======================================================================
 require('./app/routes.js')(app); // load our routes and pass in our app and fully configured passport
 
