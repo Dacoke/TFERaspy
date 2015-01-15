@@ -4,7 +4,7 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var port 	 = 80;
+var port 	 = 3000;
 
 var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
