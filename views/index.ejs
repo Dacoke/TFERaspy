@@ -21,7 +21,7 @@
     <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 	<script>
-		var socket = io.connect('http://tfe.ngrok.com:3000');
+		var socket = io.connect('http://tfe.ngrok.com:80');
 		(function($) {
         	$(function() { 
 		        socket.on('print', function(message) {
